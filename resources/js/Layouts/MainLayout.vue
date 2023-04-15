@@ -77,7 +77,29 @@ let openMenue = ref(false)
         <MenuItem :iconSize="24" name="Create Vehicul" iconString="playlist" pageUrl="/playlist" />
     </ul>
     <div class="border-b border-b-gray-700"></div>
+    <ul>
+        <li class="font-demibold text-[13px] mt-3 text-gray-300 hover:text-white">#Marrackech</li>
+        <li class="font-demibold text-[13px] mt-3 text-gray-300 hover:text-white">#Ifran</li>
+        <li class="font-demibold text-[13px] mt-3 text-gray-300 hover:text-white">#Fes</li>
+    </ul>
 </div>
 </div>
-<slot>Default</slot>
+
+<div
+    class="
+        fixed
+        right-0
+        top-0
+        w-[calc(100%-240px)]
+        overflow-auto
+        h-full
+        bg-gradient-to-b
+        from-[#1C1C1C]
+        to-black
+    "
+>
+<div class="mt-[70px]"></div>
+<slot />
+<div class="mb=[100px]"></div>
+</div>
 </template>
