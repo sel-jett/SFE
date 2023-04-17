@@ -62,7 +62,7 @@ onMounted(() => {
   </div>
 </nav>
 
-<aside id="logo-sidebar" class="logo-sidebar" aria-label="Sidebar">
+<aside id="logo-sidebar" class="logo-sidebar z-20" aria-label="Sidebar">
    <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
       <ul class="space-y-2 font-medium">
          <li>
@@ -112,8 +112,5 @@ onMounted(() => {
       </ul>
    </div>
 </aside>
-
-<div class="p-4 sm:ml-64">
-      <slot />
-</div>
+    <slot />
 </template>
