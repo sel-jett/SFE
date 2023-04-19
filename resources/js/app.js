@@ -1,6 +1,7 @@
 import './bootstrap'
 import '../css/app.css'
 import 'flowbite'
+import 'tw-elements'
 
 import { createApp, h } from 'vue'
 import { ZiggyVue } from 'ziggy'
