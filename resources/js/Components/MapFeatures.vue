@@ -16,7 +16,7 @@
           <ListboxOption as="template" v-for="city in cities" :key="city.id" :value="city" v-slot="{ active, selected }">
             <li :class="[active ? 'bg-indigo-600 text-white' : 'text-gray-900', 'relative cursor-default select-none py-2 pl-3 pr-9']">
               <div class="flex items-center">
-                <span :class="[selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate']">{{ city.name }}</span>
+                <span @click="handleCityClick(city)" :class="[selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate']">{{ city.name }}</span>
               </div>
 
               <span v-if="selected" :class="[active ? 'text-white' : 'text-indigo-600', 'absolute inset-y-0 right-0 flex items-center pr-4']">
@@ -34,6 +34,7 @@
 import { ref } from 'vue'
 import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+import axios from 'axios';
 
 const cities = [
   {
@@ -42,7 +43,7 @@ const cities = [
   },
   {
     id: 2,
-    name: 'Marrackech',
+    name: 'Marrakech',
   },
   {
     id: 3,
@@ -57,6 +58,22 @@ const cities = [
     name: 'Agadir'
   },
 ]
-
 const selected = ref(cities[1])
+const searchQuery = ref(null)
+const searchData = ref(null)
+const queryTimeout = ref(null)
+
+const search = async() => {
+  const getData = await axios.get(`http://127.0.0.1:8000/api/search/${selected.value.name}`);
+
+  searchData.value = getData.data.features[0];
+  console.log('data of location : ',searchData.value);
+}
+
+const handleCityClick = (city) => {
+  selected.value = city
+  console.log(selected.value.name);
+  search();
+}
+
 </script>
