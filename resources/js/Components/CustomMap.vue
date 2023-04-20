@@ -1,5 +1,7 @@
 <template>
-  <div class="h-screen w-screen z-10" id="mapContainer"></div>
+  <div class="h-screen w-screen relative z-10" id="mapContainer">
+    <MapFeatures class="w-auto absolute lg:left-20 md:right-[85rem] xl:right-[140rem] sm:right-0 top-[1.8rem]" style="z-index: 5000;"></MapFeatures>
+  </div>
 </template>
 
 <script>
@@ -8,6 +10,7 @@ import L, { PolyUtil, map, marker } from "leaflet";
 import "../../../public/leaflet.curve.js";
 import { onMounted, ref } from 'vue';
 import markerIcon from "../../../public/images/icons/map-marker-red.svg";
+import MapFeatures from './MapFeatures.vue';
 
 export default {
   name: "LeafletMap",
