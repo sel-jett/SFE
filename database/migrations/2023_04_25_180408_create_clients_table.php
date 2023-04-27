@@ -11,18 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clients', function (Blueprint $table) {
-            $table->id();
-            $table->string('nom');
-            $table->string('prenom');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('username')->unique();
-            $table->integer('customerId')->nullable();
-            $table->unsignedBigInteger('currentPayingMethodId')->nullable();
-            $table->boolean('accountActivated')->default(true);
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('clients')) {
+            Schema::create('clients', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->timestamps();
+            });
+        }
+
     }
 
     /**
@@ -30,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropColumns('clients',[
-            'nom','prenom','email','password','username', 'customerId', 'currentPayingMethodId', 'accountActivated'
-        ]);
+        Schema::dropIfExists('clients');
     }
 };
